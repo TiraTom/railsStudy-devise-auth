@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
+  
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opner"
+  end
+  
   root 'welcome#index'
   
   get 'dashboard' => 'dashboard#index'
