@@ -1,8 +1,6 @@
 class WelcomeController < ApplicationController
 
   def index
-    if authenticate_user!
-      redirect_to("/dashboard")
-    end
+    redirect_to dashboard_path if authenticate_user!
   end
 end
