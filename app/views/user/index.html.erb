@@ -1,0 +1,19 @@
+<div class="center-block">
+    <h3 class="center-block">User一覧</h3>
+    <table class="table table-border">
+        <thead>
+            <tr>
+                <th>email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @emailInfo.each do |info| %>
+                <tr>
+                    <td>
+                        <%= info.email %>
+                    </td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
