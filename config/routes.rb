@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
+  get 'users/index'
+
   devise_for :users
+  
+  mount LetterOpenerWeb::Engine, at: "/letter_opner" if Rails.env.development?
+  
   root 'welcome#index'
+  
+  resources :dashboard, only: [:index]
+  resources :user, only: [:index]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
