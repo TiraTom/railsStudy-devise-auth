@@ -3,7 +3,7 @@ class UserController < ApplicationController
     @userFlg = current_user.admin_flg
     if @userFlg ==  true
       @userInfo = User.find_by_sql(['select id,email,locked_at from users'])
-    else lo
+    else
       redirect_to dashboard_index_path
     end
   end
@@ -18,6 +18,6 @@ class UserController < ApplicationController
     else
       ActiveRecord::Base.connection.select_all("UPDATE users SET locked_at = null WHERE email='#{email}'")
     end
-    redirect_to user_index_path
+    redirect_to user_index_path, notice: "アカウントステータスを変更しました"
   end
 end

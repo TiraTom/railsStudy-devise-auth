@@ -16,18 +16,24 @@
                     </td>
                     <td class="status_col">
                         <% if info.locked_at.nil? %>
-                            <span class="account_status">ロック</span>
-                        <% else %>
                             <span class="account_status">アンロック</span>
+                        <% else %>
+                            <span class="account_status">ロック</span>
                         <% end %>
                     </td>
                     <td>
-                        <%= button_to "アカウントステータス変更",
-                            user_edit_path,
-                            method: :put, 
-                            class: "btn btn-warning change_account_status show-btn", 
-                            params: { email: info.email} 
-                        %>
+                        <% if info.email == current_user.email %>
+                            <button class="btn btn-default show-btn disabled">アカウントステータス変更</button>
+                        <% else %>
+                            <%= button_to "アカウントステータス変更",
+                                user_edit_path,
+                                method: :put, 
+                                class: "btn btn-warning change_account_status show-btn", 
+                                params: { email: info.email} ,
+                                data: { confirm: "ステータスを変更しますか？" }
+                            %>
+
+                        <% end %>
                     </td>
                 </tr>
             <% end %>
