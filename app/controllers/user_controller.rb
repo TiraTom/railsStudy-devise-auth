@@ -7,4 +7,17 @@ class UserController < ApplicationController
       redirect_to dashboard_index_path
     end
   end
+  
+  def changeAccountStatus
+    email = params[:email]
+    user = User.find_by_sql(["SELECT * FROM users WHERE email='#{email}'"])
+    if user.locked_at.nil?
+      require 'date'
+      time = DateTime.now
+      User.find_by_sql(["UPDATE users SET	locked_at = '#{time}' WHERE email='#{email}'"])    
+    else
+      User.find_by_sql(["UPDATE users SET	locked_at = nil WHERE email='#{email}'"])    
+    end
+    redirect_to user_index_path
+  end
 end

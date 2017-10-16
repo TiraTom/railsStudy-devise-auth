@@ -1,18 +1,19 @@
 /* global $ */
 $(document).ready(function() {
-  $(".change_account_status").on('show.bs.modal', function(event){
-    var button = $(event.relatedTarget);
-    var recipient = button.data('whatever');
-    var modal = $(this);
-    $('.this-modal-account-email').attr(recipient.email);
-    $('.this-modal-account-status').attr($('.account_status').val())    
-            
+  var oppositeStatus = function(val){
+    if (val == "アンロック"){
+      return "ロック"
+    }else{
+      return "アンロック"
+    }
+  }
+  
+  $('.change_account_status').on('click', function(){
+    var email = $(this).siblings(".email_col").val() 
+    var nowstatus = $(this).siblings(".status_col").val()
+    var newstatus = oppositeStatus($(this).siblings(".status_col").val())
+    
+    window.confirm(email + "のアカウントステータスを変更します。\n" + nowstatus + "->" + newstatus)
+    
   });
-
-  $(".account_status").on('click', function(){
-      console.log("AA");
-  });    
-
- $("p").css("color", "red");
-
-})
+});
