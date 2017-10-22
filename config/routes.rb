@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   
   root 'welcome#index'
   
-  put 'user/edit' => 'user#changeAccountStatus'
+  put 'user/edit' => 'user#change_account_status'
   
   resources :dashboard, only: [:index]
   resources :user, only: [:index]
