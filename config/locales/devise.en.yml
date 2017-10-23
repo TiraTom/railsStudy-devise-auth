@@ -4,6 +4,7 @@ en:
   activerecord:
     attributes:
       user:
+        admin_flg: 'administrator'
   devise:
     basic:
       log_in: 'Log in'

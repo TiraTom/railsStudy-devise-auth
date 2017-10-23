@@ -1,0 +1,42 @@
+<div class="center-block">
+    <h3 class="center-block">User一覧</h3>
+    <table class="table table-border">
+        <thead>
+            <tr>
+                <th>email</th>
+                <th>status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @userInfo.each do |info| %>
+                <tr>
+                    <td class="email_col">
+                        <%= info.email %>
+                    </td>
+                    <td class="status_col">
+                        <% if info.locked_at.nil? %>
+                            <span class="account_status">アンロック</span>
+                        <% else %>
+                            <span class="account_status">ロック</span>
+                        <% end %>
+                    </td>
+                    <td>
+                        <% if info.email == current_user.email %>
+                            <button class="btn btn-default show-btn disabled">アカウントステータス変更</button>
+                        <% else %>
+                            <%= button_to "アカウントステータス変更",
+                                user_edit_path,
+                                method: :put, 
+                                class: "btn btn-warning change_account_status show-btn", 
+                                params: { user_id: info.id} ,
+                                data: { confirm: "ステータスを変更しますか？" }
+                            %>
+
+                        <% end %>
+                    </td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

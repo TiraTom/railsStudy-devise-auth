@@ -3,23 +3,25 @@
 <head>
   <title>ElitesDeviseAuth</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <header>
-    <% if user_signed_in? %>
-      <%= current_user.email %>としてログイン中
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "サインアップ", new_user_registration_path %>
-      <%= link_to "サインイン", new_user_session_path %>
-    <% end %>
-  </header>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-
-<%= yield %>
-
+  <div class="container">
+    <header class="header">
+      <% if user_signed_in? %>
+        <%= current_user.email %>としてログイン中
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to "サインアップ", new_user_registration_path %>
+        <%= link_to "サインイン", new_user_session_path %>
+      <% end %>
+    </header>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  
+  <%= yield %>
+</div>
 </body>
 </html>
